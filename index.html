@@ -30,7 +30,7 @@
             font-size: 1.2em;
             margin: 20px 0;
         }
-        a.button {
+        .button {
             display: inline-block;
             padding: 15px 30px;
             font-size: 1.2em;
@@ -38,8 +38,9 @@
             background-color: #007bff;
             text-decoration: none;
             border-radius: 5px;
+            cursor: pointer;
         }
-        a.button:hover {
+        .button:hover {
             background-color: #0056b3;
         }
         footer {
@@ -59,6 +60,31 @@
             width: 100%;
             height: auto;
         }
+        form {
+            margin: 20px 0;
+            display: inline-block;
+            text-align: left;
+            width: 100%;
+        }
+        input, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -69,11 +95,42 @@
         <div class="graphic">
             <img src="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" alt="Degen Vets Graphic">
         </div>
-        <p>Thank you for visiting our website | UNDER CONSTRUCTION</p>
-        <a href="#contact" class="button">Contact Us</a>
+        <p>Thank you for visiting our website</p>
+        
+        <!-- Contact Form -->
+        <form id="contactForm">
+            <input type="text" name="firstname" placeholder="Your First Name" required>
+            <input type="text" name="lastname" placeholder="Your Last Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <input type="submit" value="Send Message">
+        </form>
     </div>
     <footer>
         <p>&copy; 2022 Degen Vets. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/portalId/formId', { // Replace with your HubSpot portal ID and form ID
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Message sent successfully!');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem sending your message.');
+            });
+        });
+    </script>
 </body>
 </html>

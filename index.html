@@ -30,19 +30,6 @@
             font-size: 1.2em;
             margin: 20px 0;
         }
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
         footer {
             background-color: #222;
             padding: 10px 0;
@@ -60,31 +47,6 @@
             width: 100%;
             height: auto;
         }
-        form {
-            margin: 20px 0;
-            display: inline-block;
-            text-align: left;
-            width: 100%;
-        }
-        input, textarea {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #222;
-            color: #fff;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
@@ -97,40 +59,20 @@
         </div>
         <p>UNDER CONSTRUCTION</p>
         
-        <!-- Contact Form -->
-        <form id="contactForm">
-            <input type="text" name="firstname" placeholder="Your First Name" required>
-            <input type="text" name="lastname" placeholder="Your Last Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <input type="submit" value="Send Message">
-        </form>
+        <!-- HubSpot Form -->
+        <div id="hubspot-form">
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+            <script>
+                hbspt.forms.create({
+                    region: "na1",
+                    portalId: "47088051",
+                    formId: "d60bbbce-92e1-4077-b7b9-6937e54f601c"
+                });
+            </script>
+        </div>
     </div>
     <footer>
         <p>&copy; 2022 Degen Vets. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const formData = new FormData(form);
-
-            fetch('https://api.hsforms.com/submissions/v3/integration/submit/portalId/formId', { // Replace with your HubSpot portal ID and form ID
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Message sent successfully!');
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was a problem sending your message.');
-            });
-        });
-    </script>
 </body>
 </html>

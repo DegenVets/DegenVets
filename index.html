@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Degen Vets</title>
+    <title>Degen Vets</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,6 +47,31 @@
             width: 100%;
             height: auto;
         }
+        form {
+            margin: 20px 0;
+            display: inline-block;
+            text-align: left;
+            width: 100%;
+        }
+        input, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -55,24 +80,47 @@
     </header>
     <div class="container">
         <div class="graphic">
-            <img src="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" alt="Degen Vets Graphic">
+            <img src="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" alt="Degen Vets powered by DevCorp">
         </div>
         <p>UNDER CONSTRUCTION</p>
         
-        <!-- HubSpot Form -->
-        <div id="hubspot-form">
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-            <script>
-                hbspt.forms.create({
-                    region: "na1",
-                    portalId: "47088051",
-                    formId: "d60bbbce-92e1-4077-b7b9-6937e54f601c"
-                });
-            </script>
-        </div>
+        <!-- Custom Contact Form -->
+        <form id="customForm">
+            <input type="text" name="firstname" placeholder="Your First Name" required>
+            <input type="text" name="lastname" placeholder="Your Last Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <input type="submit" value="Send Message">
+        </form>
     </div>
     <footer>
         <p>&copy; 2022 Degen Vets. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('customForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/47088051/d60bbbce-92e1-4077-b7b9-6937e54f601c', { // HubSpot API endpoint with portal ID and form ID
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Message sent successfully!');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem sending your message.');
+            });
+        });
+    </script>
 </body>
 </html>

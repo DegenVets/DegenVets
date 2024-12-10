@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Input validation logic
-    const validateName = (name) => /^[A-Za-z]{4,}$/.test(name);
+    const validateName = (name) => /^[A-Za-z]{3,}$/.test(name);
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const validatePhone = (countryCode, phoneNumber) => {
         const phonePatterns = {
@@ -64,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
             firstNameInput,
             validateName,
             firstNameError,
-            'First name must be at least 4 letters long'
+            'First name must be at least 3 letters long'
         );
 
         const isLastNameValid = validateField(
             lastNameInput,
             validateName,
             lastNameError,
-            'Last name must be at least 4 letters long'
+            'Last name must be at least 3 letters long'
         );
 
         const isEmailValid = validateField(

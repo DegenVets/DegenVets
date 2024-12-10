@@ -39,6 +39,19 @@ nav {
 .logo img {
     height: 100%;
     border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    }
+    100% {
+        box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    }
 }
 
 h1, h2 {

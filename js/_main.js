@@ -15,54 +15,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneError = document.getElementById('phoneError');
     const messageError = document.getElementById('messageError');
 
-    // Navigation links smooth scrolling
+    // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
-            
+
             if (targetSection) {
-                targetSection.scrollIntoView({ 
+                targetSection.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start'
+                    block: 'start',
                 });
             }
         });
     });
 
-    // Validation functions
-    const validateName = (name) => {
-        // Must be more than 3 characters, letters only
-        const nameRegex = /^[A-Za-z]{4,}$/;
-        return nameRegex.test(name);
-    };
-
-    const validateEmail = (email) => {
-        // Standard email validation regex
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
+    // Input validation logic
+    const validateName = (name) => /^[A-Za-z]{4,}$/.test(name);
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const validatePhone = (countryCode, phoneNumber) => {
-        // Different regex patterns for different country codes
         const phonePatterns = {
-            '+1': /^\d{10}$/, // US/Canada 10 digit
-            '+44': /^\d{10}$/, // UK 10 digit
-            '+91': /^\d{10}$/ // India 10 digit
+            '+1': /^\d{10}$/,
+            '+44': /^\d{10}$/,
+            '+91': /^\d{10}$/
         };
-
-        return countryCode && phonePatterns[countryCode] 
-            ? phonePatterns[countryCode].test(phoneNumber)
-            : false;
+        return phonePatterns[countryCode]?.test(phoneNumber) || false;
     };
 
-    // Validate and update error messages
     const validateField = (input, validator, errorElement, errorMessage) => {
         const value = input.value.trim();
         const isValid = validator(value);
-        
+
         if (!isValid) {
             errorElement.textContent = errorMessage;
             input.classList.add('invalid');
@@ -70,65 +55,68 @@ document.addEventListener('DOMContentLoaded', () => {
             errorElement.textContent = '';
             input.classList.remove('invalid');
         }
-        
+
         return isValid;
     };
 
-    // Validate form inputs on each change
     const validateForm = () => {
         const isFirstNameValid = validateField(
-            firstNameInput, 
-            validateName, 
-            firstNameError, 
+            firstNameInput,
+            validateName,
+            firstNameError,
             'First name must be at least 4 letters long'
         );
-        
+
         const isLastNameValid = validateField(
-            lastNameInput, 
-            validateName, 
-            lastNameError, 
+            lastNameInput,
+            validateName,
+            lastNameError,
             'Last name must be at least 4 letters long'
         );
-        
+
         const isEmailValid = validateField(
-            emailInput, 
-            validateEmail, 
-            emailError, 
+            emailInput,
+            validateEmail,
+            emailError,
             'Please enter a valid email address'
         );
-        
+
         const isPhoneValid = validateField(
-            { value: phoneInput.value.trim() }, 
+            { value: phoneInput.value.trim() },
             () => validatePhone(countryCodeInput.value, phoneInput.value.trim()),
-            phoneError, 
-            'Please enter a valid phone number for the selected country code'
+            phoneError,
+            'Please enter a valid phone number'
         );
-        
+
         const isMessageValid = messageInput.value.trim().length > 0;
         messageError.textContent = isMessageValid ? '' : 'Message cannot be empty';
 
-        // Enable submit button only if all fields are valid
-        const isFormValid = isFirstNameValid && 
-            isLastNameValid && 
-            isEmailValid && 
-            isPhoneValid && 
-            isMessageValid;
-        
-        submitBtn.disabled = !isFormValid;
+        submitBtn.disabled = !(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneValid && isMessageValid);
     };
 
-    // Add event listeners for real-time validation
-    [firstNameInput, lastNameInput, emailInput, phoneInput, messageInput, countryCodeInput]
-        .forEach(input => input.addEventListener('input', validateForm));
+    // Glitch effect for text
+    const glitchEffect = (element) => {
+        setInterval(() => {
+            const randomX = Math.random() * 4 - 2;
+            const randomY = Math.random() * 4 - 2;
+            element.style.textShadow = `
+                ${randomX}px ${randomY}px #ff00ff,
+                ${-randomX}px ${-randomY}px #00ffff`;
+        }, 100);
+    };
+
+    document.querySelectorAll('h1, h2').forEach(glitchEffect);
+
+    // Add real-time validation listeners
+    [firstNameInput, lastNameInput, emailInput, phoneInput, messageInput, countryCodeInput].forEach(input => {
+        input.addEventListener('input', validateForm);
+    });
 
     // Form submission
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-        // Prepare form data
         const formData = new FormData(form);
-        
-        // Compose email content
         const emailContent = `
 From: ${formData.get('firstname')} ${formData.get('lastname')}
 Email: ${formData.get('email')}
@@ -139,17 +127,14 @@ ${formData.get('message')}
         `;
 
         try {
-            // Send email using Fetch API or your preferred method
             const response = await fetch('https://formspree.io/f/your_formspree_endpoint', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    to: 'git@fuck-out.com',
+                    to: 'example@yourdomain.com',
                     subject: 'New Contact Form Submission',
-                    text: emailContent
-                })
+                    text: emailContent,
+                }),
             });
 
             if (response.ok) {
@@ -165,6 +150,6 @@ ${formData.get('message')}
         }
     });
 
-    // Initial validation to disable submit button
+    // Initial form validation
     validateForm();
 });

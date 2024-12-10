@@ -144,6 +144,7 @@ input:focus, textarea:focus {
 .phone-input select, .phone-input input {
     border: none;
     background-color: #222;
+    color: #FFF;
 }
 
 .phone-input select {

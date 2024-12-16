@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Degen Vets</title>
     <link rel="stylesheet" href="css/_main.css">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" type="DegenVets">
 </head>
 <body>
     <header>
@@ -17,6 +18,7 @@
             <ul class="menu">
                 <li>|<a href="#app">Members</a>|</li>
                 <li>|<a href="#about">About</a>|</li>
+                <li>|<a href="#whitepaper">Whitepaper</a>|</li>
                 <li>|<a href="#contact">Contact</a>|</li>
             </ul>
         </nav>
@@ -38,7 +40,7 @@
         </section>
 
         <section id="contact" class="container">
-            <h2>For the Bold</h2>
+            <h2>Contact Us</h2>
             <form id="contactForm">
                 <div class="form-group">
                     <label for="firstname">First Name</label>
@@ -82,7 +84,76 @@
                 </div>
             </form>
         </section>
+
+        <section id="whitepaper" class="container">
+            <h2>"Our Mission"</h2>
+            <p> Tired of jumping through hoops on centralized platforms that bleed you dry and judge you by a résumé instead of real skills? The grind’s broken. Late payments, shady contracts, and faceless middlemen have ruled for too long. At Degen Vets, we rewrite the system. This is a decentralized grid where you get paid for what you deliver—no fluff, no wasted hours—just completed "work tickets." Your reputation is earned in the network, built on results and peer respect, not outdated credentials. No overlords. No delays. Just you, your skills, and the work that matters. Plug in, and let’s flip the script.</p>
+            <a href="./static/whitepaper.html" target="_blank" class="cta-button">Whitepaper</a>
+            <p>For those seeking talent, Degen Vets is the answer to the endless search for reliable, skilled developers. Say goodbye to the inefficiencies of traditional hiring platforms, where costs are inflated and time is wasted. Here, you can connect directly with workers who are motivated by results, not hours. With a reputation system rooted in proven performance, you can trust that the talent you find is as capable as they are accountable. No middlemen, no delays—just fast, fair access to the talent that gets things done.</p>
+        </section>
+
+        <section id="app" class="container">
+            <h2>Join The Waitlist</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                    <span id="firstnameError" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                    <span id="lastnameError" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span id="emailError" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="phone-input">
+                        <select id="countryCode" name="countryCode">
+                            <option value="+1">+1 (US/Canada)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+91">+91 (India)</option>
+                        </select>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <span id="phoneError" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <span id="messageError" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" id="submitBtn" value="Mint Pass" disabled>
+                </div>
+            </form>
+        </section>
     </main>
+
+    <div id="chat-button" class="chat-button">
+        💬 Chat
+    </div>
+    <div id="chat-widget" class="chat-widget hidden">
+        <div class="chat-header">
+            Assistant
+            <button id="close-chat">✖</button>
+        </div>
+        <div class="chat-body" id="chat-body"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+    
 
     <footer>
         <div>
@@ -92,13 +163,19 @@
             <a href="https://www.instagram.com/degenvets">
                 <img src="https://cdn-icons-png.flaticon.com/128/3781/3781777.png" target="_blank" width="20px" height="20px" alt="instagram">
             </a>
+            <a href="https://www.reddit.com/r/DegenVets/s/kVybhpsOuZ">
+                <img src="https://cdn-icons-png.flaticon.com/128/1384/1384077.png" target="_blank" width="20px" height="20px" alt="reddit">
+            </a>
             <a href="https://linkedin.com/company/degenvets">
                 <img src="https://cdn-icons-png.flaticon.com/128/216/216570.png" target="_blank" width="20px" height="20px" alt="linkedin">
             </a>
         </div>
-        <p>Powered by DevCorp.org | Designed for Degenerates, by Degenerates.<br><a href="#policy">Privacy Policy</a> © 2022 DegenVets.com</p>
+        <p>Powered by DevCorp.org | Designed for Degenerates, by Degenerates.<br><a href="./static/privacy.html" taret="_blank">Privacy Policy</a> © 2022 DegenVets.com</p>
     </footer>
 
     <script src="js/_main.js"></script>
+    <script type="module" src="./config.js"></script>
+    <script type="module" src="./main.js"></script>
+
 </body>
 </html>

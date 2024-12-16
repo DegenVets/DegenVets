@@ -47,7 +47,7 @@ graph TB
     end
 
     subgraph "Blockchain Layer"
-        H[Solana Program]
+        H[Cosmos SDK Program]
         I[NFT Metadata]
     end
 

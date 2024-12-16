@@ -85,7 +85,6 @@ p {
 .menu {
     display: flex;
     list-style-type: none;
-    gap: 8px;
     margin: 0;
     padding: 0;
     flex-wrap: wrap;

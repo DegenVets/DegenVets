@@ -1,0 +1,67 @@
+.cta-button {
+    margin-top: 10px;
+}
+.cta-button2 {
+    margin-top: 20px;
+}
+
+.cta-button3 {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    border: 2px solid #ff00004981;
+    border-radius: 25px;
+    background-color: #e0a800;
+    box-shadow: 0 0 12px #ff000049, 0 0 20px #ff000049;
+    transition: all 0.3s ease-in-out;
+}
+
+.cta-button4 {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e0a800; 
+    text-decoration: none;
+    text-align: center;
+    border: none; 
+    border-radius: 50px;
+    background-color: #000000;
+    box-shadow: 0 0 15px #e0a800, 0 0 25px #e0a800;
+    transition: all 0.3s ease-in-out;
+    animation: pulse 2s infinite;
+}
+
+@media (max-wdith:768px) {
+}
+
+ .cta-button:hover {
+    background-color: #5e1300;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff00004981, 0 0 30px #ff00004981;
+}
+.cta-button2:hover {
+    background-color: #5e1300;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff00004981, 0 0 30px #ff00004981;
+}
+
+.cta-button3:hover {
+    background-color: #5e1300;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff00004981, 0 0 30px #ff00004981;
+}
+
+.cta-button4:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #e0a800, 0 0 35px #e0a800;
+    cursor: pointer;
+}

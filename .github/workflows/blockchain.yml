@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy blockchain content to app.degenvets.com
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-app"
   cancel-in-progress: false
 
 jobs:
@@ -27,13 +27,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare deployment
+      - name: Prepare deployment for app.degenvets.com
         run: |
+          # Create a temporary output directory
           mkdir -p ./output
-          echo "Copying files to output directory, excluding output itself..."
-          find . -mindepth 1 -maxdepth 1 ! -name "output" -exec cp -R {} ./output/ \;
-          echo "Moving index.html from GX-web to root..."
-          cp ./GX-web/index.html ./output/index.html
+          echo "Copying all files from GX-blockchain to output directory..."
+          cp -R ./GX-blockchain/* ./output/
+          # Move index.html from staatic/docs to the root of output
+          cp ./GX-blockchain/staatic/docs/index.html ./output/index.html
+          # Add the CNAME file for app.degenvets.com
+          echo "app.degenvets.com" > ./output/CNAME
           echo "Output directory structure:"
           ls -R ./output
 

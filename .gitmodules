@@ -1,0 +1,3 @@
+[submodule "GX-blockchain"]
+	path = GX-blockchain
+	url = git@github.com:degenvets/dv_blockchain.git

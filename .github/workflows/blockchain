@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -16,6 +16,9 @@ concurrency:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,15 +27,24 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare deployment
+      - name: Prepare deployment for app.degenvets.com
         run: |
+          # Create a separate deployment directory for app.degenvets.com
           mkdir -p ./output-app
+          echo "Copying all files from GX-blockchain to output-app directory..."
           cp -R ./GX-blockchain/* ./output-app/
+          # Move index.html from static/ to the root of output-app
           cp ./GX-blockchain/static/index.html ./output-app/index.html
+          # Add the CNAME file for app.degenvets.com
           echo "app.degenvets.com" > ./output-app/CNAME
+          echo "Output directory structure:"
+          ls -R ./output-app
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './output-app'
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          branch: gh-pages-app
-          path: ./output-app

@@ -1,0 +1,31 @@
+footer {
+    background-color: #222;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0; 
+    z-index: 1000;
+    color: #fff;
+    text-align: center;
+    font-size: calc(8px + 1vw); 
+    text-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff, 0 0 20px #00d4ff; 
+}
+
+.footer img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+@media (max-width: 600px) {
+    footer {
+        font-size: calc(6px + 1vw); 
+        flex-wrap: ca
+        lc(00.5rem);
+    }
+    
+    .footer img {
+        max-width: 5%;
+        max-height: 5%;
+       }
+}

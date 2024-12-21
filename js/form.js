@@ -8,14 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Error message elements
     const firstNameError = document.getElementById('firstnameError');
     const lastNameError = document.getElementById('lastnameError');
     const emailError = document.getElementById('emailError');
     const phoneError = document.getElementById('phoneError');
     const messageError = document.getElementById('messageError');
 
-    // Sanitize user input
     const sanitizeInput = (input) => {
         const sanitized = input
             .replace(/</g, "&lt;")
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return sanitized.trim();
     };
 
-    // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -43,14 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Input validation logic
     const validateName = (name) => /^[A-Za-z]{3,}$/.test(name);
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const validatePhone = (phoneNumber) => /^\(\d{3}\) \d{3}-\d{4}$/.test(phoneNumber);
 
     const formatPhoneNumber = (value) => {
-        const cleaned = value.replace(/\D/g, ''); // Remove non-digit characters
-        if (cleaned.length > 10) return value; // Prevent invalid long input
+        const cleaned = value.replace(/\D/g, ''); 
+        if (cleaned.length > 10) return value; 
         const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
         if (!match) return value;
 
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedValue = formatPhoneNumber(phoneInput.value);
         phoneInput.value = formattedValue;
 
-        // Prevent repetitive digits like "1111111111"
         const repetitivePattern = /^(\d)\1{9}$/;
         if (repetitivePattern.test(formattedValue.replace(/\D/g, ''))) {
             phoneError.textContent = 'Phone number cannot have repetitive digits';
@@ -76,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phoneInput.classList.remove('invalid');
         }
 
-        validateForm(); // Trigger form validation
+        validateForm();
     });
 
     const validateField = (input, validator, errorElement, errorMessage) => {
@@ -128,8 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         submitBtn.disabled = !(isFirstNameValid && isLastNameValid && isEmailValid && isPhoneValid && isMessageValid);
     };
-
-    // Glitch effect for text
     const glitchEffect = (element) => {
         setInterval(() => {
             const randomX = Math.random() * 4 - 2;
@@ -142,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('h1, h2').forEach(glitchEffect);
 
-    // Add real-time validation listeners
     [firstNameInput, lastNameInput, emailInput, messageInput, countryCodeInput].forEach(input => {
         input.addEventListener('input', validateForm);
     });
@@ -183,53 +175,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     validateForm();
-
-import('./config.js').then((config) => {
-    const API_KEY = config.API_KEY;
-
-    console.log("API Key:", API_KEY);
-
-
-    fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${API_KEY}`, 
-        },
-        body: JSON.stringify({
-            model: 'gpt-4', 
-            messages: [{ role: 'user', content: 'Hello!' }], 
-        }),
-    })
-        .then((response) => response.json())
-        .then((data) => console.log("Response 1:", data))
-        .catch((error) => console.error('Error in Request 1:', error));
-
-
-    fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${API_KEY}`, 
-        },
-        body: JSON.stringify({
-            model: 'gpt-4', 
-            messages: [
-                { role: 'system', content: 'You are a helpful assistant.' }, 
-                { role: 'user', content: 'Tell me a joke!' } 
-            ],
-            max_tokens: 50, 
-        }),
-    })
-        .then((response) => response.json())
-        .then((data) => console.log("Response 2:", data))
-        .catch((error) => console.error('Error in Request 2:', error));
-}).catch((error) => console.error('Error loading config:', error));
-
-function closeTab() {
-    window.open('', '_self').close();
-}
-
-
-
-});

@@ -1,0 +1,99 @@
+form {
+    margin: 20px 0;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    background-color: transparent;
+    border: 1px solid #00ffff;
+    color: #fff;
+    box-shadow: 0 0 5px #00ffff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.phone-input {
+    display: flex;
+    padding: 0;
+}
+
+.phone-input select, .phone-input input {
+    border: none;
+    background-color: #222;
+    color: #FFF;
+}
+
+.phone-input select {
+    width: 150px;
+    border-right: 1px solid #333;
+}
+
+.phone-input input {
+    flex-grow: 1;
+}
+
+input[type="submit"] {
+    background: #09daff;
+    color: #000;
+    border: 2px solid #09daff;
+    box-shadow: 0 0 10px #09daff, 0 0 20px #09daff;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover:not(:disabled) {
+    background: #ff0000;
+    border-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+input[type="submit"]:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.error {
+    color: #ff4136;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #00ffff;
+    border-radius: 5px;
+    background: transparent;
+    box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    transition: all 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #00d4ff; 
+    color: #000; 
+    transform: scale(1.1); 
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+}

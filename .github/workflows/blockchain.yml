@@ -29,21 +29,21 @@ jobs:
 
       - name: Prepare deployment for app.degenvets.com
         run: |
-          # Create a temporary output directory
-          mkdir -p ./output
-          echo "Copying all files from GX-blockchain to output directory..."
-          cp -R ./GX-blockchain/* ./output/
-          # Move index.html from staatic/docs to the root of output
-          cp ./GX-blockchain/staatic/docs/index.html ./output/index.html
+          # Create a separate deployment directory for app.degenvets.com
+          mkdir -p ./output-app
+          echo "Copying all files from GX-blockchain to output-app directory..."
+          cp -R ./GX-blockchain/* ./output-app/
+          # Move index.html from staatic/docs to the root of output-app
+          cp ./GX-blockchain/staatic/docs/index.html ./output-app/index.html
           # Add the CNAME file for app.degenvets.com
-          echo "app.degenvets.com" > ./output/CNAME
+          echo "app.degenvets.com" > ./output-app/CNAME
           echo "Output directory structure:"
-          ls -R ./output
+          ls -R ./output-app
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './output'
+          path: './output-app'
 
       - name: Deploy to GitHub Pages
         id: deployment

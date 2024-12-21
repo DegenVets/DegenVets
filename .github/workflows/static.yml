@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -15,32 +15,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact for main site (degenvets.com)
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './GX-web'
-
-      - name: Deploy main site to GitHub Pages
-        id: deploy-main
-        uses: actions/deploy-pages@v4
+      - name: Prepare content for GitHub Pages
+        run: |
+          mkdir -p ./output
+          cp -R ./ ./output/
+          cp ./GX-web/index.html ./output/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './output'
 
       - name: Deploy to GitHub Pages
-        id: deployment-docs
+        id: deployment
         uses: actions/deploy-pages@v4

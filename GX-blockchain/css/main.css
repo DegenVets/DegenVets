@@ -1,11 +1,4 @@
-@import url('./carousel.css');
-@import url('./mobile.css');
-@import url('./cta-button.css');
-@import url('./form.css');
-@import url('./grid-container.css');
-@import url('./left-right.css');
-@import url('./chat.css');
-@import url('./sharedots.css');
+@import url('../../GX-web/css/main.css');
 
 :root {
     --primary-color: #ff00004981;

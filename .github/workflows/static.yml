@@ -1,4 +1,3 @@
-# Workflow for deploying static content to GitHub Pages with multiple domains
 name: Deploy static content to Pages
 
 on:
@@ -22,29 +21,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Step 2: Setup Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Step 3: Deploy main site (GX-web for degenvets.com)
       - name: Upload artifact for main site (degenvets.com)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './GX-web'  # Directory containing the main site's index.html
+          path: './GX-web'
 
       - name: Deploy main site to GitHub Pages
         id: deploy-main
         uses: actions/deploy-pages@v4
 
-      # Step 4: Deploy subdomain site (GX-blockchain for app.degenvets.com)
       - name: Upload artifact for subdomain (app.degenvets.com)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './GX-blockchain/static'  # Directory containing the subdomain site's index.html
+          path: './GX-blockchain/static'
 
       - name: Deploy subdomain site to GitHub Pages
         id: deploy-subdomain

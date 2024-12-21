@@ -1,0 +1,9 @@
+@import url('../../GX-web/css/main.css');
+
+:root {
+    --primary-color: #ff00004981;
+    --secondary-color: #eeb64f;
+    --background-gradient: linear-gradient(135deg, #000000, #201616, #2c2525, #201616, #000000);
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

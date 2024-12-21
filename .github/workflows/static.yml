@@ -35,6 +35,8 @@ jobs:
           find . -mindepth 1 -maxdepth 1 ! -name "output" -exec cp -R {} ./output/ \;
           echo "Moving index.html from GX-web to root..."
           cp ./GX-web/index.html ./output/index.html
+          echo "Copying files from GX-web to output directory..."
+          cp -R ./GX-web/* ./output/
           echo "Output directory structure:"
           ls -R ./output
 

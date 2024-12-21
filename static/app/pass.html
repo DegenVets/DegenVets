@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degen Vets</title>
+    <link rel="stylesheet" href="../../css/_main.css">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" type="DegenVets">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#dashboard">
+                    <img src="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" alt="Degen Vets Logo">
+                </a>
+            </div>
+            <ul class="menu">
+                <a href="#wallet" class="cta-button">Wallet</a>
+                <a href="#app" class="cta-button">Market</a>
+                <a href="#mint" class="cta-button">Mint</a>
+                <a href="#contact" class="cta-button">Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="container">
+            <div class="graphic">
+                <img src="https://avatars.githubusercontent.com/u/180209438?s=400&u=1b338abb15b69eaa77051408fd0c89efc26964b5&v=4" alt="Degen Vets powered by DevCorp">
+            </div>
+        </section>
+
+        <section id="mint" class="container">
+            <h2>Mint Pass</h2>
+            <div id="donate-form" class="donate-container">
+                <h2>Support this project</h2>
+    
+                <div class="form-group">
+                  <label for="crypto-select">Select cryptocurrency:</label>
+                  <select id="crypto-select" class="form-control">
+                    <option value="SOL">Solana (SOL)</option>
+                    <option value="USDC-SOL">USDC on Solana</option>
+                    <option value="MMOSH-SOL">MMOSH on Solana</option>
+                    <option value="ETH">Ethereum (ETH)</option>
+                    <option value="USDC-ETH">USDC on Ethereum</option>
+                    <option value="MATIC">Polygon (MATIC)</option>
+                    <option value="USDC-MATIC">USDC on Polygon</option>
+                    <option value="BTC">Bitcoin (BTC)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="amount-input">Amount:</label>
+                  <input type="number" id="amount-input" class="form-control" placeholder="Enter amount" step="0.000001" min="0">
+                </div>
+                <div class="form-group">
+                  <label for="equivalent-value">Equivalent value:</label>
+                  <input type="text" id="equivalent-value" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="display-currency">Display currency:</label>
+                  <select id="display-currency" class="form-control">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                  </select>
+                </div>
+                <div class="qr-container"></div>
+                    <img src="https://raw.githubusercontent.com/DevCorpOrg/linktree/main/img/qr/btc.png" width="20%" alt="Bitcoin QR Code" class="qr-code" id="bitcoin-qr">
+                    <img src="https://raw.githubusercontent.com/DevCorpOrg/linktree/main/img/qr/eth.png" width="20%" alt="Ethereum QR Code" class="qr-code" id="ethereum-qr">
+                    <img src="https://raw.githubusercontent.com/DevCorpOrg/linktree/main/img/qr/sol.png" width="20%" alt="Solana QR Code" class="qr-code" id="solana-qr">
+                  </div>
+                <button id="donate-button" class="button">Donate with Wallet</button>
+                <div id="fallback-options" style="display: none;">
+                  <h3>Alternative donation methods:</h3>
+                  <div id="qr-code" class="text-center mb-3"></div>
+                  <div class="form-group">
+                    <label for="wallet-address">Wallet Address:</label>
+                    <div class="input-group">
+                      <input type="text" id="wallet-address" class="form-control" readonly>
+                      <button id="copy-address" class="btn btn-secondary">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    
+        </section>
+    </main>
+
+    <div id="chat-button" class="chat-button">
+        💬 Chat
+    </div>
+    <div id="chat-widget" class="chat-widget hidden">
+        <div class="chat-header">
+            Assistant
+            <button id="close-chat">✖</button>
+        </div>
+        <div class="chat-body" id="chat-body"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            Powered by DevCorp.org
+            <a href="https://twitter.com/degenvets">
+           <img src="https://cdn-icons-png.flaticon.com/128/1384/1384075.png" target="_blank" alt="twitter">
+            </a>
+            <a href="https://www.instagram.com/degenvets">
+            <img src="https://cdn-icons-png.flaticon.com/128/3781/3781777.png" target="_blank" alt="instagram">
+            </a>
+            <a href="https://www.reddit.com/r/DegenVets/s/kVybhpsOuZ">
+            <img src="https://cdn-icons-png.flaticon.com/128/1384/1384077.png" target="_blank" alt="reddit">
+            </a>
+            <a href="https://linkedin.com/company/degenvets">
+            <img src="https://cdn-icons-png.flaticon.com/128/216/216570.png" target="_blank" alt="linkedin">
+            </a>
+            © 2022 DegenVets.com
+        </div>
+        <h3>Designed for Degenerates, by Degenerates. <a href="./static/privacy.html" target="_blank">Policy</a></h3>
+    </footer>
+
+    <script type="module" src="js/_main.js"></script>
+
+</body>
+</html>

@@ -17,6 +17,10 @@ footer {
     max-height: 24px;
 }
 
+a {
+    text-decoration: none;
+  }
+
 @media (max-width: 600px) {
     footer {
         font-size: calc(6px + 1vw); 
